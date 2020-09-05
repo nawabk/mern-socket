@@ -1,0 +1,12 @@
+.alert__container {
+  position: fixed;
+  padding: 4px;
+  top: 1rem;
+  right: 1rem;
+  z-index: 500;
+  width: 20rem;
+}
+.alert__top-right {
+  position: relative;
+  margin-bottom: 1rem;
+}

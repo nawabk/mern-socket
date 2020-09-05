@@ -1,0 +1,21 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.auth__container {
+  width: 25rem;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+}
+.auth__form {
+  display: flex;
+  flex-direction: column;
+}
+.auth__heading {
+  align-self: center;
+}
+.auth__button {
+  align-self: flex-end;
+}
