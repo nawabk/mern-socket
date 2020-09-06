@@ -6,6 +6,7 @@ const router = express.Router();
 router.use(authController.protect);
 router.get('/requests', assigmentRequestController.getAllRequests);
 router.post('/:id/sendRequest', assigmentRequestController.sendRequest);
+router.get('/getAllSentRequest', assigmentRequestController.getAllSentRequest);
 router.put('/:id/changeStatus', assigmentRequestController.changeRequestStatus);
 
 module.exports = router;

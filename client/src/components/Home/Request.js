@@ -9,6 +9,20 @@ const Request = ({ match, user }) => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
+    async function getAllSentRequest() {
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          `${BASE_URL}/users/getAllSentRequest`,
+          getAuthHeader()
+        );
+        setLoading(false);
+        setRequests(res.data);
+      } catch (err) {
+        console.log('error while fetching set request');
+        setLoading(false);
+      }
+    }
     async function getAllRequests() {
       try {
         setLoading(true);
@@ -23,7 +37,11 @@ const Request = ({ match, user }) => {
         setLoading(false);
       }
     }
-    getAllRequests();
+    if (match.params.status === 'sentrequest') {
+      getAllSentRequest();
+    } else {
+      getAllRequests();
+    }
   }, [match.params.status]);
 
   const checkPermission = reciever => {

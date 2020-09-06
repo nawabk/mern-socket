@@ -19,6 +19,12 @@ const Header = ({ history }) => {
         <Nav.Link href='#!' onClick={() => history.push('/requests/REJECTED')}>
           Rejected
         </Nav.Link>
+        <Nav.Link
+          href='#!'
+          onClick={() => history.push('/requests/sentrequest')}
+        >
+          Sent Request
+        </Nav.Link>
       </Nav>
       <Nav>
         <Nav.Link href='#!' onClick={() => history.push('/users')}>

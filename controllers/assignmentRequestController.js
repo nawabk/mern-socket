@@ -67,3 +67,11 @@ exports.changeRequestStatus = catchAsync(async (req, res, next) => {
     message: `Request status is changed from ${assignmentRequest.status} to ${req.body.status}`
   });
 });
+
+exports.getAllSentRequest = catchAsync(async (req, res, next) => {
+  const userId = req.user.id;
+  const sentRequests = await AssignmentRequest.find({ sender: userId })
+    .populate({ path: 'sender', select: ['name'] })
+    .populate({ path: 'reciever', select: ['name'] });
+  res.json(sentRequests);
+});
