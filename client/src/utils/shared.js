@@ -6,6 +6,6 @@ export const getAuthHeader = () => {
   };
 };
 
-export const BASE_URL = 'http://localhost:5000/api';
+export const BASE_URL = `${process.env.REACT_APP_API}/api`;
 
-export const SOCKET = 'http://localhost:5000';
+export const SOCKET = `${process.env.REACT_APP_API}`;
