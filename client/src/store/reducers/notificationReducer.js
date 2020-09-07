@@ -1,4 +1,8 @@
-import { GET_NOTIFICATIONS, NOTIFICATION_ERROR } from '../actions/types';
+import {
+  GET_NOTIFICATIONS,
+  NOTIFICATION_ERROR,
+  ADD_NOTIFICATION
+} from '../actions/types';
 const initialState = {
   notifications: [],
   error: null
@@ -10,6 +14,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         notifications: action.payload
+      };
+    case ADD_NOTIFICATION:
+      return {
+        ...state,
+        notifications: [...state.notifications, action.payload]
       };
     case NOTIFICATION_ERROR:
       return {

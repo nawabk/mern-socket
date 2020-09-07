@@ -2,6 +2,7 @@ const AssignmentRequest = require('../models/AsssignmentRequest');
 const User = require('../models/User');
 const catchAsync = require('../utils/catchAsync');
 const Notification = require('../models/Notification');
+const myEmitter = require('../utils/MyEmitter');
 
 exports.getAllRequests = catchAsync(async (req, res, next) => {
   const requests = await AssignmentRequest.find({
@@ -35,7 +36,8 @@ exports.sendRequest = catchAsync(async (req, res, next) => {
     message: `${req.user.name} send you a request`,
     notifyTo: req.params.id
   };
-  await Notification.create(notification);
+  const createdNotification = await Notification.create(notification);
+  myEmitter.emit('notify', req.params.id, createdNotification);
   res.status(201).json({
     assignmentRequest
   });
@@ -61,7 +63,8 @@ exports.changeRequestStatus = catchAsync(async (req, res, next) => {
     message: `You request to ${req.user.name} is ${req.body.status}`,
     notifyTo: assignmentRequest.sender._id
   };
-  await Notification.create(notification);
+  const createdNotification = await Notification.create(notification);
+  myEmitter.emit('notify', assignmentRequest.sender._id, createdNotification);
   res.status(201).json({
     status: 'success',
     message: `Request status is changed from ${assignmentRequest.status} to ${req.body.status}`
